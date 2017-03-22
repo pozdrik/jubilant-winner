@@ -1,0 +1,2 @@
+<!ELEMENT message (#PCDATA)>
+        <!ATTLIST message author CDATA #REQUIRED>
