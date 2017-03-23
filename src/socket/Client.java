@@ -44,15 +44,18 @@ public class Client {
             Thread t = new Thread(readBack);
             t.start();
 
-            BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+            //BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
 
             try (FileWriter fileWriter = new FileWriter("history.txt", true)) {
                 while (true) {
                     String line = keyboard.readLine();
+                    out.writeUTF(line);
+
                     //Document document = user.createXmlMessage(line);
                     //user.sendXmlMessage(out, document);
-                    user.create_send(line, out);
+                    //user.create_send(line, out);
 
                     fileWriter.write(line);
                     fileWriter.append('\n');

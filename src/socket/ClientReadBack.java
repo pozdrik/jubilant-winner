@@ -12,11 +12,13 @@ public class ClientReadBack implements Runnable {
 
     @Override
     public void run() {
-        User user = new User();
+        //User user = new User();
         try {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             while (true) {
-               user.readXmlMessage(in);
+               //user.readXmlMessage(in);
+                String line = in.readUTF();
+                System.out.println(line);
             }
         } catch (Exception e) {
             e.printStackTrace();

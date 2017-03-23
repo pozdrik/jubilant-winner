@@ -23,9 +23,18 @@ public class ClientWorker implements Runnable {
 
         try {
             while (true) {
-                User user = new User();
+                //User user = new User();
+                String line = in.readUTF();
+                System.out.println(line);
 
-                user.read_send(in, number);
+                for (int i = 0; i < Server.getClients().size(); i++) {
+                    if (i != number) {
+                        DataOutputStream out = new DataOutputStream(Server.getClients().get(i).getOutputStream());
+                        out.writeUTF(line);
+                        out.flush();
+                    }
+                }
+                //user.read_send(in, number);
 
 //                Document document = user.readXmlMessage(in);
 //
